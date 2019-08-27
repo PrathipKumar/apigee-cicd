@@ -94,8 +94,9 @@ pipeline {
             // sendNotifications currentBuild.result
         }
     }
+	*/
 }
-*/
+
 /*
 
 using shared library for slack reporting
