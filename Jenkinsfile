@@ -1,6 +1,6 @@
 #!groovy
 
-@Library('slackNotifications-shared-library@master') _
+//@Library('slackNotifications-shared-library@master') _
 
 pipeline {
     agent any
@@ -12,7 +12,7 @@ pipeline {
 
     environment {
         //getting the current stable/deployed revision...this is used in undeloy.sh in case of failure...
-        stable_revision = sh(script: 'curl -H "Authorization: Basic $base64encoded" "https://api.enterprise.apigee.com/v1/organizations/onlineman477-eval/apis/HR-API/deployments" | jq -r ".environment[0].revision[0].name"', returnStdout: true).trim()
+        stable_revision = sh(script: 'curl -H "Authorization: Basic $base64encoded" "https://api.enterprise.apigee.com/v1/organizations/kprathip-eval/apis/HR-API/deployments" | jq -r ".environment[0].revision[0].name"', returnStdout: true).trim()
     }
 
     stages {
@@ -30,7 +30,7 @@ pipeline {
                 bat "apigeelint -s HR-API/apiproxy/ -f codeframe.js"
             }
         }
-        stage('Unit-Test-With-Coverage') {
+    /*    stage('Unit-Test-With-Coverage') {
             steps {
                 script {
                     try {
@@ -46,6 +46,7 @@ pipeline {
                 }
             }
         }
+		*/
         /*stage('Promotion') {
             steps {
                 timeout(time: 2, unit: 'DAYS') {
@@ -62,7 +63,7 @@ pipeline {
                 bat "mvn -f HR-API/pom.xml install -Pprod -Dusername=${apigeeUsername} -Dpassword=${apigeePassword} -Dapigee.config.options=update"
             }
         }
-        stage('Integration Tests') {
+     /*   stage('Integration Tests') {
             steps {
                 script {
                     try {
@@ -84,6 +85,7 @@ pipeline {
                 }
             }
         }
+	*/	
     }
 
     post {
