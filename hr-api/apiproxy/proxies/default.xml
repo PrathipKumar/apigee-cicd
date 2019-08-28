@@ -100,7 +100,7 @@
         </Flow>
     </Flows>
     <HTTPProxyConnection>
-        <BasePath>/hr</BasePath>
+        <BasePath>/hr22</BasePath>
         <Properties/>
         <VirtualHost>default</VirtualHost>
         <VirtualHost>secure</VirtualHost>
