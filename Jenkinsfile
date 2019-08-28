@@ -6,7 +6,7 @@ pipeline {
 	  agent any
     environment {
         //getting the current stable/deployed revision...this is used in undeloy.sh in case of failure...
-        stable_revision = sh(script: 'curl -H "Authorization: Basic $base64encoded" "https://api.enterprise.apigee.com/v1/organizations/kprathip-eval/apis/HR-API/deployments", returnStdout: true).trim()
+        stable_revision = sh(script: 'curl -H "Authorization: Basic $base64encoded" "https://api.enterprise.apigee.com/v1/organizations/kprathip-eval/apis/HR-API/deployments"', returnStdout: true).trim()
     } 
 
     stages {
