@@ -14,9 +14,14 @@ pipeline {
             steps {                
                 bat "npm -v"
                 bat "mvn -v"
-                echo "$apigeeUsername"
-                echo "Stable Revision: ${env.stable_revision}"
-        }}  
+                echo "$apigeeUsername"                
+        }}
+		stage('Policy-Code Analysis') {
+            steps {
+                bat "npm install -g apigeelint"
+                bat "apigeelint -s HR-API/apiproxy/ -f codeframe.js"
+            }
+        }	
  
     }
 
