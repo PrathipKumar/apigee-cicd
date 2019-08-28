@@ -21,6 +21,22 @@ pipeline {
                 bat "npm install -g apigeelint"
                 bat "apigeelint -s HR-API/apiproxy/ -f codeframe.js"
             }
+        }
+		stage('Unit-Test-With-Coverage') {
+            steps {
+                script {
+                    try {
+                        bat "npm install"
+                        bat "npm test test/unit/*.js"
+                        bat "npm run coverage test/unit/*.js"
+                    } catch (e) {
+                        throw e
+                    } finally {
+                        bat "cd coverage && cp cobertura-coverage.xml $WORKSPACE"
+                        step([$class: 'CoberturaPublisher', coberturaReportFile: 'cobertura-coverage.xml'])
+                    }
+                }
+            }
         }	
  
     }
