@@ -44,8 +44,8 @@ pipeline {
                  //deploy using maven plugin
                  
                  // deploy only proxy and deploy both proxy and config based on edge.js update
-                //bat "sh && sh deploy.sh"
-                bat "mvn -f HR-API/pom.xml install -Pprod -Dusername=${apigeeUsername} -Dpassword=${apigeePassword} -Dapigee.config.options=update"
+                bat "sh && sh deploy.sh"
+                //bat "mvn -f HR-API/pom.xml install -Pprod -Dusername=${apigeeUsername} -Dpassword=${apigeePassword} -Dapigee.config.options=update"
             }
         }
 		stage('Integration Tests') {
@@ -54,7 +54,7 @@ pipeline {
                     try {
                         // using credentials.sh to get the client_id and secret of the app..
                         // thought of using them in cucumber oauth feature
-                        // bat "sh && sh credentials.sh"
+                         bat "sh && sh credentials.sh"
                         bat "cd $WORKSPACE/test/integration && npm install"
                         bat "cd $WORKSPACE/test/integration && npm test"
                     } catch (e) {
