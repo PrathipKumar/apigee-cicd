@@ -1,6 +1,6 @@
 #!groovy
 
-//@Library('slackNotifications-shared-library@master') _
+@Library('slackNotifications-shared-library@master') _
 
 pipeline {
 	  agent any
@@ -74,7 +74,7 @@ pipeline {
 	post {
         always {
              cucumberSlackSend channel: 'devops', json: '$WORKSPACE/reports.json'
-             sendNotifications currentBuild.result
+            // sendNotifications currentBuild.result
         }
     }
 
