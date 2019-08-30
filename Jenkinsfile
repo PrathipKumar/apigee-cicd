@@ -11,7 +11,8 @@ pipeline {
 
     stages {
         stage('Initial-Checks') {
-            steps {                
+            steps {     
+				sendNotifications 'STARTED'
                 bat "npm -v"
                 bat "mvn -v"
                 echo "$apigeeUsername"                
@@ -74,7 +75,7 @@ pipeline {
 	post {
         always {
              cucumberSlackSend channel: 'devops', json: '$WORKSPACE/reports.json'
-            // sendNotifications currentBuild.result
+             sendNotifications currentBuild.result
         }
     }
 
