@@ -9,10 +9,10 @@ Feature:
 	      | name          | value 			 |
 	      | Content-Type  | application/json |
         When I POST to /hr22
-        Then response code should be 200
-        And response body path $.id should be 9886244925Siddharth
-        And response body path $.name should be Siddharth Jai
-        And response body path $.account should be Active
+        Then response code should be 401
+#        And response body path $.id should be 9886244925Siddharth
+#        And response body path $.name should be Siddharth Jai
+#        And response body path $.account should be Active
 
     @GET_all_records    
     Scenario: Read all records and check status code
@@ -24,6 +24,6 @@ Feature:
     Scenario: retrieve a specific user record
         Given I set Content-type header to application/json
         When I GET /hr22/9886244925Siddharth
-        Then response code should be 200
+        Then response code should be 404
 
 
