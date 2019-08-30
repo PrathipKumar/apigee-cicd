@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('Initial-Checks') {
             steps {     
-				sendNotifications 'STARTED'
+				sendNotifications 'STARTED the build'
                 bat "npm -v"
                 bat "mvn -v"
                 echo "$apigeeUsername"                
