@@ -58,6 +58,8 @@ pipeline {
                         bat "cd $WORKSPACE/test/integration && npm install"
                         bat "cd $WORKSPACE/test/integration && npm test"
                     } catch (e) {
+						sendNotifications 'Integration test failed'
+						error("Pipeline stopped")
                         //if tests fail, I have used an shell script which has 3 APIs to undeploy, delete current revision & deploy previous stable prevision
                         //bat "sh && sh undeploy.sh"
                         //throw e
