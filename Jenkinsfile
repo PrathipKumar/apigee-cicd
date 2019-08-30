@@ -64,12 +64,18 @@ pipeline {
                         // generate cucumber reports in both Test Pass/Fail scenario
                         bat "cd $WORKSPACE/test/integration && cp reports.json $WORKSPACE"
                         cucumber fileIncludePattern: 'reports.json'
-                        build job: 'cucumber-report'
+                        //build job: 'cucumber-report'
                     }
                 }
             }
         }	
  
+    }
+	post {
+        always {
+             cucumberSlackSend channel: 'devops', json: '$WORKSPACE/reports.json'
+             sendNotifications currentBuild.result
+        }
     }
 
  }
