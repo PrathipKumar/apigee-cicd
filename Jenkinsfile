@@ -25,7 +25,6 @@ pipeline {
 				echo "$BUILD_NUMBER"      
             }
         }
-		/*
 		stage('Unit-Test-With-Coverage') {
             steps {
                 script {
@@ -74,8 +73,7 @@ pipeline {
                     }
                 }
             }
-        }
-	*/		
+        }		
  
     }
 	post {
