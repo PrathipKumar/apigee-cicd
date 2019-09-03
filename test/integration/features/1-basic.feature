@@ -9,7 +9,7 @@ Feature:
 	      | name          | value 			 |
 	      | Content-Type  | application/json |
         When I POST to /hr22
-        Then response code should be 200
+        Then response code should be 401
 #        And response body path $.id should be 9886244925Siddharth
 #        And response body path $.name should be Siddharth Jai
 #        And response body path $.account should be Active
