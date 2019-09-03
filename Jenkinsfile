@@ -20,7 +20,8 @@ pipeline {
 		stage('Policy-Code Analysis') {
             steps {
                 bat "npm install -g apigeelint"
-                bat "apigeelint -s HR-API/apiproxy/ -f html.js"
+                bat "apigeelint -s HR-API/apiproxy/ -f html.js > lint-report.html"
+				bat "cp lint-report.html $WORKSPACE"
             }
         }
 		stage('Unit-Test-With-Coverage') {
