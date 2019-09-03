@@ -15,7 +15,8 @@ pipeline {
 				sendNotifications 'STARTED the build'
                 bat "npm -v"
                 bat "mvn -v"
-                echo "$apigeeUsername"                
+                echo "$apigeeUsername"  
+				System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "")								
         }}
 		stage('Policy-Code Analysis') {
             steps {
@@ -23,7 +24,7 @@ pipeline {
                 bat "apigeelint -s HR-API/apiproxy/ -f html.js > $WORKSPACE/lint-report.html"		
 				bat "dir"
 				echo "$BUILD_NUMBER"  
-				publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '.', reportFiles: 'lint-report.html', reportName: 'HTML Report', reportTitles: ''])				
+				publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '.', reportFiles: 'lint-report.html', reportName: 'HTML Report', reportTitles: ''])						
             }
         }
 		stage('Unit-Test-With-Coverage') {
