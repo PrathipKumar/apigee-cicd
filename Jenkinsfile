@@ -15,8 +15,7 @@ pipeline {
 				sendNotifications 'STARTED the build'
                 bat "npm -v"
                 bat "mvn -v"
-                echo "$apigeeUsername"  
-				System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "")								
+                echo "$apigeeUsername"  				
         }}
 		stage('Policy-Code Analysis') {
             steps {
