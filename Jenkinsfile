@@ -20,8 +20,9 @@ pipeline {
 		stage('Policy-Code Analysis') {
             steps {
                 bat "npm install -g apigeelint"
-                bat "apigeelint -s HR-API/apiproxy/ -f html.js > $WORKSPACE/lint-report.html"		
-				bat "LINT_STATUS = sh(script: '${?}', returnStatus: true)"
+                //bat "apigeelint -s HR-API/apiproxy/ -f html.js > $WORKSPACE/lint-report.html"		
+				def LINT_STATUS = sh(script: 'apigeelint -s HR-API/apiproxy/ -f html.js > $WORKSPACE/lint-report.html', returnStatus: true)
+				//bat "LINT_STATUS = sh(script: '${?}', returnStatus: true)"
 				script{
 					if(LINT_STATUS == 0)
 						echo $LINT_STATUS	
