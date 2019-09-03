@@ -21,8 +21,12 @@ pipeline {
             steps {
                 bat "npm install -g apigeelint"
                 bat "apigeelint -s HR-API/apiproxy/ -f html.js > $WORKSPACE/lint-report.html"		
-				bat "dir"
-				echo "$BUILD_NUMBER"  
+				when {                
+                expression { $? == 0 }
+				}
+				steps {
+					echo "$?"
+				}				
 				publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '.', reportFiles: 'lint-report.html', reportName: 'HTML Report', reportTitles: ''])						
             }
         }
