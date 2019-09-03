@@ -22,7 +22,7 @@ pipeline {
                 bat "npm install -g apigeelint"
                 bat "apigeelint -s HR-API/apiproxy/ -f html.js > $WORKSPACE/lint-report.html"		
 				when {                
-                expression { $? == 0 }
+                expression { "$?" == 0 }
 				}
 				steps {
 					echo "$?"
