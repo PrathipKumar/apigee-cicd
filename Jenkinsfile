@@ -26,7 +26,7 @@ pipeline {
                 expression { LINT_STATUS == 0 }
 				}
 				steps {
-					echo "$?"
+					echo $LINT_STATUS
 				}				
 				publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '.', reportFiles: 'lint-report.html', reportName: 'HTML Report', reportTitles: ''])						
             }
