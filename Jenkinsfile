@@ -21,7 +21,7 @@ pipeline {
             steps {
                 bat "npm install -g apigeelint"
                 bat "apigeelint -s HR-API/apiproxy/ -f html.js > $WORKSPACE/lint-report.html"		
-				LINT_STATUS = sh($?)
+				LINT_STATUS = sh(script: '$?', returnStdout: true)
 				when {                
                 expression { LINT_STATUS == 0 }
 				}
