@@ -21,10 +21,10 @@ pipeline {
             steps {
                 bat "npm install -g apigeelint"
                 bat "apigeelint -s HR-API/apiproxy/ -f html.js > $WORKSPACE/lint-report.html"		
-				LINT_STATUS = sh(script: '$?', returnStdout: true)
+				bat "LINT_STATUS = $?"
 				script{
 					if(LINT_STATUS == 0)
-					echo $LINT_STATUS	
+						echo $LINT_STATUS	
 				}
 							
 				publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '.', reportFiles: 'lint-report.html', reportName: 'HTML Report', reportTitles: ''])						
