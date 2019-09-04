@@ -20,15 +20,8 @@ pipeline {
 		stage('Policy-Code Analysis') {
             steps {
                 bat "npm install -g apigeelint"
-                //bat "apigeelint -s HR-API/apiproxy/ -f html.js > $WORKSPACE/lint-report.html"		
-				script{
-				def LINT_STATUS = sh(script: 'exec(apigeelint -s HR-API/apiproxy/ -f html.js) > $WORKSPACE/lint-report.html', returnStatus: true)
-				//bat "LINT_STATUS = sh(script: '${?}', returnStatus: true)"				
-					if(LINT_STATUS == 0)
-						echo $LINT_STATUS	
-				}
-							
-				publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '.', reportFiles: 'lint-report.html', reportName: 'HTML Report', reportTitles: ''])						
+                bat "apigeelint -s HR-API/apiproxy/ -f html.js > $WORKSPACE/lint-report.html"									
+				//publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '.', reportFiles: 'lint-report.html', reportName: 'HTML Report', reportTitles: ''])						
             }
         }
 		stage('Unit-Test-With-Coverage') {
